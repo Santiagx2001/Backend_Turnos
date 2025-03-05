@@ -1,21 +1,26 @@
 {
   "name": "backend_turnos",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "bun run server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Santiagx2001/Backend_Turnos.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "bugs": {
+    "url": "https://github.com/Santiagx2001/Backend_Turnos/issues"
+  },
+  "homepage": "https://github.com/Santiagx2001/Backend_Turnos#readme",
   "devDependencies": {
     "prisma": "^6.4.1"
   },
   "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.21.2",
-    "gtts": "^0.2.1"
+    "@prisma/client": "^6.4.1"
   }
 }

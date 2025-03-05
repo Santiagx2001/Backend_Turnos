@@ -1,14 +1,40 @@
-import express from 'express';
-import cors from 'cors';
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-import {
-    StringToMp3Rute,
-} from './Router/Routes.js';
+async function main() {
+    const tipoDoc = await prisma.tipoDoc.create({
+        data: {
+            nombre: 'Cedula',
+            descripcion: 'Documento Nacional de Identidad',
+        },
+    });
 
-const app = express();
+    const localidad = await prisma.localidad.create({
+        data: {
+            nombre: 'Engativa',
+            descripcion: 'Localidad de la ciudad de Bogotá',
+        },
+    });
 
-app.use(cors());
-app.use(express.json());
-app.use('/api', StringToMp3Rute); //http://localhost:3000/api/StrToMp3
+    const formulario = await prisma.formularios.create({
+        data: {
+            Nombres: 'Alexs',
+            Apellidos: 'Quiroz',
+            TipoDoc_id: tipoDoc.IDTipoDoc,
+            NumDoc: 1019983865,
+            FechaNacimiento: new Date('2003-09-10T00:00:00Z'),
+            Localidad_id: localidad.IDLocalidad,
+            NumTelefono: 3023208680, 
+        },
+    });
 
-export default app;
+    console.log('Formulario creado:', formulario);
+}
+
+main()
+    .catch((e) => {
+        throw e;
+    })
+    .finally(async () => {
+        await prisma.$disconnect();
+    });

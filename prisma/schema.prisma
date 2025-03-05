@@ -9,6 +9,33 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model Formularios {
+  IDUsuario Int @id @default(autoincrement())
+  Nombres String
+  Apellidos String
+  TipoDoc_id Int
+  TipoDoc TipoDoc @relation(fields: [TipoDoc_id], references: [IDTipoDoc])
+  NumDoc BigInt
+  FechaNacimiento DateTime
+  Localidad_id Int
+  Localidad Localidad @relation(fields: [Localidad_id], references: [IDLocalidad])
+  NumTelefono BigInt
+}
+
+model TipoDoc {
+  IDTipoDoc Int @id @default(autoincrement())
+  nombre String
+  descripcion String?
+  formularios Formularios[]
+}
+
+model Localidad {
+  IDLocalidad Int @id @default(autoincrement())
+  nombre String
+  descripcion String?
+  formularios Formularios[]
 }
