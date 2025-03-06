@@ -7,8 +7,55 @@
 generator client {
   provider = "prisma-client-js"
 }
-
+//conexión a la base de datos
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+//modelo tabla para tipos de citas medicas
+model TiposDeCitas {
+    id_Cita Int @id @default(autoincrement())
+    CitaMedica String
+    FormularioRegistro FormularioRegistro[]
+}
+
+//modelo tipos de documentos
+model TipoDeDocumentos {
+  id_tipoDocumento Int @id @default(autoincrement())
+  TipoDocumento String
+  FormularioRegistro FormularioRegistro[]
+}
+
+//modelo para las localidades de bogotá
+model Localidad {
+  id_Localidad Int @id @default(autoincrement())
+  Localidad String 
+  FormularioRegistro FormularioRegistro[]
+}
+
+model Turnos {
+  id_Turno String @id @default(uuid())
+  Turnos String?
+  FormularioRegistro_id String
+  FormularioRegistro FormularioRegistro @relation(fields: [FormularioRegistro_id], references: [IDUsuario])
+}
+
+//modelo tabla de formulario
+model FormularioRegistro {
+  IDUsuario String @id @default(uuid())
+  PrimerNombre String
+  SegundoNombre String
+  PrimerApellido String
+  SegundoApellido String
+  Localidad_ID Int
+  Localidad Localidad @relation(fields: [Localidad_ID], references: [id_Localidad])
+  NumeroDocumento String
+  FechaNacimiento DateTime
+  TipoDeDocumento_ID Int
+  TipoDeDocumentos TipoDeDocumentos @relation(fields: [TipoDeDocumento_ID], references: [id_tipoDocumento])
+  NumeroTelefono String
+  TipoDeCitas_ID Int
+  TipoDeCitas TiposDeCitas @relation(fields: [TipoDeCitas_ID], references: [id_Cita])
+  Turnos Turnos[]
 }
