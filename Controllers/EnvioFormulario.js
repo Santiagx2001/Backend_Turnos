@@ -1,12 +1,12 @@
 import {PrismaClient} from "@prisma/client";
-import { CreacionTurno } from "./CreacionTurno";
+import { EnvioDatosTurno } from "./EnvioDatosTurno";
 
 const prisma = new PrismaClient();
 
 export const EnvioFormulario = async(req , res) => {
     const data = req.body;
     try {
-        const EnvioFormulario =  prisma.formularioRegistro.create(
+        const EnvioFormulario = await prisma.formularioRegistro.create(
             {
                 data:{
                     PrimerNombre: data.primerNombre,
@@ -21,9 +21,7 @@ export const EnvioFormulario = async(req , res) => {
                     TipoDeCitas_ID: data.tipoDeCitas
                 }
             })
-
-        const paso2 = await creacionTurno(var1);
-console.log(paso2)
+        const envioDatosTurno = EnvioDatosTurno(data.numeroDocumento, data.tipoDeCitas);
     } catch (error) {
         console.log("error:", error);
         return res.status(500).json({ error:"Error interno del servidor"});

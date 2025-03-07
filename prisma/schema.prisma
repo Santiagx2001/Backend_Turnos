@@ -36,21 +36,23 @@ model Localidad {
 
 model Turnos {
   id_Turno String @id @default(uuid())
-  Turnos String?
-  FormularioRegistro_id String
-  FormularioRegistro FormularioRegistro @relation(fields: [FormularioRegistro_id], references: [IDUsuario])
+  NumeroDocumento_FK String
+  FormularioRegistro FormularioRegistro @relation(fields: [NumeroDocumento_FK], references: [NumeroDocumento])
+  Turno String?
+  HoraTurno DateTime
+  HoraAtencion DateTime
 }
 
 //modelo tabla de formulario
 model FormularioRegistro {
-  IDUsuario String @id @default(uuid())
+  IDUsuario String @default(uuid())
   PrimerNombre String
   SegundoNombre String
   PrimerApellido String
   SegundoApellido String
   Localidad_ID Int
   Localidad Localidad @relation(fields: [Localidad_ID], references: [id_Localidad])
-  NumeroDocumento String
+  NumeroDocumento String @id
   FechaNacimiento DateTime
   TipoDeDocumento_ID Int
   TipoDeDocumentos TipoDeDocumentos @relation(fields: [TipoDeDocumento_ID], references: [id_tipoDocumento])
