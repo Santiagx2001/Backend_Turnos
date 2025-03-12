@@ -1,21 +1,18 @@
-import express from "express";
-import { PrismaClient } from "@prisma/client";
+import {PrismaClient} from "@prisma/client";
 
-const prisma = new PrismaClient();
+const prisma = PrismaClient();
 
-export const consulta = async(req, res) => {
-    const dato = req.body;
-    try {
-        const consultaDatos = await  prisma.formularioRegistro.findFirst({
-            where : dato
-        })
-        if (!consultaDatos) {
-            return res.status(400).json({ error: "No se encontraron los datos solicitados"});
+export function getTurno (documento) {
+    const llamarTurno = async(req, res) => {
+        try {
+            const dato = req.body;
+        const GetTurno = await prisma.turno.findFirst({
+            where: { numeroDocumento: documento }
+        });
+        return res.json(GetTurno);
+        } catch (error) {
+            console.log("erro en el servidor: ", error);
+            return res.status(404).json({ error: "Error en el servidor" });
         }
-        console.log(consultaDatos);
-        return res.json(consultaDatos);
-    } catch (error) {
-        console.log("Error al obtener el dato")
-        return res.status(404).json({error: "error interno del servidor"})
     }
 }
