@@ -38,7 +38,7 @@ model Turnos {
   id_Turno String @id @default(uuid())
   NumeroDocumento_FK String
   FormularioRegistro FormularioRegistro @relation(fields: [NumeroDocumento_FK], references: [NumeroDocumento])
-  Turno String?
+  Turno String
   HoraTurno DateTime
   HoraAtencion DateTime
 }

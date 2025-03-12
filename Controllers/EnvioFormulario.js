@@ -1,5 +1,6 @@
 import {PrismaClient} from "@prisma/client";
 import { EnvioDatosTurno } from "./EnvioDatosTurno";
+import { Router } from "express";
 
 const prisma = new PrismaClient();
 
