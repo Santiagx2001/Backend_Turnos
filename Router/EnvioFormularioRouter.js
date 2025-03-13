@@ -1,5 +1,5 @@
 import express from 'express';
-import {EnvioFormulario} from '../Controllers/EnvioFormulario.js'
+import { EnvioFormulario } from '../Controllers/EnvioFormulario.js'
 
 const router = express.Router();
 

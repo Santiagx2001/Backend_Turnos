@@ -1,4 +1,4 @@
-import {PrismaClient} from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { EnvioDatosTurno } from "./EnvioDatosTurno";
 
 
@@ -22,7 +22,9 @@ export const EnvioFormulario = async(req , res) => {
                     TipoDeCitas_ID: data.tipoDeCitas
                 }
             })
-        const envioDatosTurno = EnvioDatosTurno(data.numeroDocumento, data.tipoDeCitas);
+        const Turno = await EnvioDatosTurno(data.numeroDocumento, data.tipoDeCitas);
+        return res.json(Turno);
+
     } catch (error) {
         console.log("error:", error);
         return res.status(500).json({ error:"Error interno del servidor"});

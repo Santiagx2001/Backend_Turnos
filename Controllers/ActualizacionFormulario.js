@@ -2,7 +2,7 @@ import {PrismaClient} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export const ActulizarDatos = async (req, res) => {
+export const ActulizacionFormulario = async (req, res) => {
     const datos = req.body;
     try {
         const actualizarDatos = await prisma.formularioRegistro.update({

@@ -1,7 +1,11 @@
 import StringToMp3Rute from './StringToMp3Router.js';
-import EnvioFormulario from './EnvioFormularioRouter.js';
+import EnvioFormularioRouter from "./EnvioFormularioRouter.js";
+import EnvioDatosTurnoRouter from "./EnvioDatosTurnoRouter.js";
+import ActualizacionFormularioRouter from "./ActializacionFormularioRouter.js"
 
 export {
-    EnvioFormulario,
-    StringToMp3Rute
+    EnvioFormularioRouter,
+    StringToMp3Rute,
+    EnvioDatosTurnoRouter,
+    ActualizacionFormularioRouter
 }
