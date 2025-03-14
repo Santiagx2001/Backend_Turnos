@@ -13,34 +13,13 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//modelo tabla para tipos de citas medicas
-model TiposDeCitas {
-    id_Cita Int @id @default(autoincrement())
-    CitaMedica String
-    FormularioRegistro FormularioRegistro[]
-}
-
-//modelo tipos de documentos
-model TipoDeDocumentos {
-  id_tipoDocumento Int @id @default(autoincrement())
-  TipoDocumento String
-  FormularioRegistro FormularioRegistro[]
-}
-
-//modelo para las localidades de bogotá
-model Localidad {
-  id_Localidad Int @id @default(autoincrement())
-  Localidad String 
-  FormularioRegistro FormularioRegistro[]
-}
-
 model Turnos {
-  id_Turno String @id @default(uuid())
+  id_Turno Int @id @default(autoincrement())
   NumeroDocumento_FK String
   FormularioRegistro FormularioRegistro @relation(fields: [NumeroDocumento_FK], references: [NumeroDocumento])
   Turno String
   HoraTurno DateTime
-  HoraAtencion DateTime
+  HoraAtencion DateTime?
 }
 
 //modelo tabla de formulario
@@ -50,14 +29,11 @@ model FormularioRegistro {
   SegundoNombre String
   PrimerApellido String
   SegundoApellido String
-  Localidad_ID Int
-  Localidad Localidad @relation(fields: [Localidad_ID], references: [id_Localidad])
+  Localidad String
   NumeroDocumento String @id
-  FechaNacimiento DateTime
-  TipoDeDocumento_ID Int
-  TipoDeDocumentos TipoDeDocumentos @relation(fields: [TipoDeDocumento_ID], references: [id_tipoDocumento])
+  FechaNacimiento DateTime @db.Date
+  TipoDeDocumento_ID String
   NumeroTelefono String
-  TipoDeCitas_ID Int
-  TipoDeCitas TiposDeCitas @relation(fields: [TipoDeCitas_ID], references: [id_Cita])
+  TipoDeCitas_ID String
   Turnos Turnos[]
 }

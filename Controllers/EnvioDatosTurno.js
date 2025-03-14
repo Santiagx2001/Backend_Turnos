@@ -5,18 +5,21 @@ const prisma = new PrismaClient();
 
 export async function EnvioDatosTurno(NumeroDocumento, Cita) {
     try {
-        const Turno = CreacionTurno(Cita);
-        const obtenerFechaHoraActual = () => new Date().toISOString().slice(0, 19).replace("T", " ");
+        const Turno = await CreacionTurno(Cita);
+        const fechaLocal = new Date().toLocaleString("sv-SE").replace(" ", "T");
+        const FechaISO = fechaLocal+".000Z";
         const DatoTurno = await prisma.turnos.create({
             data: {
                 NumeroDocumento_FK: NumeroDocumento,
                 Turno: Turno,
-                HoraTurno: obtenerFechaHoraActual()
+                HoraTurno: FechaISO,
+                HoraAtencion: null
             }
         });
+        console.log(DatoTurno.HoraTurno);
         return DatoTurno;
     } catch (error) {
-        console.log("Error al enviar Datos", error);
-        return res.status(500).json({ error:"Error interno del servidor"});
+        console.log("Error al enviar Datos del turno", error);
+        return { error:"Error interno del servidor", detalles: error };
     }
 }
