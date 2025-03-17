@@ -3,7 +3,7 @@ import {PrismaClient} from "@prisma/client";
 const prisma = new PrismaClient();
 
 export async function CreacionTurno(cita) {
-    if(cita == "No Prioritaria") {
+    if(cita == "no prioritaria") {
         let acumulador = 100;
         const dato = await prisma.turnos.findFirst({where:{Turno:{startsWith: "N",},},orderBy:{id_Turno: "desc",},take: 1,});
         console.log(dato);
@@ -21,7 +21,7 @@ export async function CreacionTurno(cita) {
             }
         }
 
-    } else if (cita != "No Prioritaria") {
+    } else if (cita != "no prioritaria") {
         let acumulador = 100;
         const dato = await prisma.turnos.findFirst({where:{Turno:{startsWith: "P",},},orderBy:{id_Turno: "desc",},take: 1,});
         if(!dato || !dato.Turno) {

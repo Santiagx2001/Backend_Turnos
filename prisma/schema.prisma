@@ -18,7 +18,7 @@ model Turnos {
   NumeroDocumento_FK String
   FormularioRegistro FormularioRegistro @relation(fields: [NumeroDocumento_FK], references: [NumeroDocumento])
   Turno String
-  HoraTurno DateTime
+  HoraTurno DateTime @db.Time()
   HoraAtencion DateTime?
 }
 
