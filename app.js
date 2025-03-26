@@ -6,7 +6,7 @@ import {
     EnvioFormularioRouter,
     EnvioDatosTurnoRouter,
     ActualizacionFormularioRouter,
-    getActializacionRouter
+    getActualizacionRouter
 } from './Router/Routes.js';
 
 const app = express();
@@ -17,7 +17,7 @@ app.use('/api', StringToMp3Rute); //http://localhost:3000/api/StrToMp3
 app.use('/api', EnvioFormularioRouter); //http://localhost:3000/api/Envioform
 app.use('/api', EnvioDatosTurnoRouter); //http://localhost:3000/api/EnvioDatosTurnos
 app.use('/api', ActualizacionFormularioRouter); //http://localhost:3000/api/ActualizacionForm
-app.use('/api', getActializacionRouter); //http://localhost:3000/api/getActualizacion
+app.use('/api', getActualizacionRouter); //http://localhost:3000/api/getActualizacion
 
 
 
