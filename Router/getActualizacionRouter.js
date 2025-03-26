@@ -1,0 +1,8 @@
+import express from "express";
+import { getActualizacion } from '../Controllers/getTurnoActualizacion.js'
+
+const router = express.Router();
+
+router.post('/getActualizacion', ActulizacionFormulario);
+
+export default router;
