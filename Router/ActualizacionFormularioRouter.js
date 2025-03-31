@@ -3,6 +3,6 @@ import { ActulizacionFormulario } from '../Controllers/ActualizacionFormulario.j
 
 const router = express.Router();
 
-router.post('/ActualizacionForm', ActulizacionFormulario);
+router.patch('/ActualizacionForm', ActulizacionFormulario);
 
 export default router;

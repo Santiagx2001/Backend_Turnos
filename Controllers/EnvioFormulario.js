@@ -17,7 +17,7 @@ export const EnvioFormulario = async(req , res) => {
                     SegundoApellido: data.SegundoApellido,
                     Localidad: data.Localidad,
                     NumeroDocumento: data.NumeroDocumento,
-                    FechaNacimiento: new Date(data.FechaNacimiento),//.toISOString().split("T")[0],
+                    FechaNacimiento: new Date(data.FechaNacimiento),
                     TipoDeDocumento_ID: data.TipoDeDocumento_ID,
                     NumeroTelefono: data.NumeroTelefono,
                     TipoDeCitas_ID: data.TipoDeCitas_ID
@@ -29,6 +29,7 @@ export const EnvioFormulario = async(req , res) => {
             "SegundoNombre" : data.SegundoNombre,
             "PrimerApellido" : data.PrimerApellido,
             "SegundoApellido" : data.SegundoApellido,
+            "NumeroDocumento" : data.NumeroDocumento,
             "Turno" : datosTurno.Turno,
             "Hora" : (datosTurno.HoraTurno).toISOString().split("T")[1].slice(0, 8)
         };

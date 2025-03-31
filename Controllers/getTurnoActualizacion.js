@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 
 export const getActualizacion = async(req, res) => {
     const dato = req.body;
-    try {
+    try {   
         const consultaDatos = await prisma.formularioRegistro.findFirst({
             where : {NumeroDocumento: dato.NumeroDocumento}
         })
