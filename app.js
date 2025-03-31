@@ -6,7 +6,8 @@ import {
     EnvioFormularioRouter,
     EnvioDatosTurnoRouter,
     ActualizacionFormularioRouter,
-    getActualizacionRouter
+    getActualizacionRouter,
+    getTurnosSinAtenderRouter
 } from './Router/Routes.js';
 
 const app = express();
@@ -18,6 +19,7 @@ app.use('/api', EnvioFormularioRouter); //http://localhost:3000/api/Envioform
 app.use('/api', EnvioDatosTurnoRouter); //http://localhost:3000/api/EnvioDatosTurnos
 app.use('/api', ActualizacionFormularioRouter); //http://localhost:3000/api/ActualizacionForm
 app.use('/api', getActualizacionRouter); //http://localhost:3000/api/getActualizacion
+app.use('/api', getTurnosSinAtenderRouter); //http://localhost:3000/api/getTurnosSinAtender
 
 
 

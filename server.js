@@ -1,25 +1,13 @@
 import app from './app.js';
-import { exec } from 'child_process';
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 
 const startServer = async () => {
     try {
-        console.log('⏳ Verificando y creando base de datos si no existe...');
-        await new Promise((resolve, reject) => {
-            exec('npx prisma db push', (error, stdout, stderr) => {
-                if (error) {
-                    console.error(`❌ Error al ejecutar Prisma: ${stderr}`);
-                    reject(error);
-                } else {
-                    console.log(`✅ Base de datos sincronizada:\n${stdout}`);
-                    resolve();
-                }
-            });
-        });
+        console.log('🚀 Iniciando servidor...');
 
         app.listen(PORT, () => {
-            console.log(`🚀 Server running on port ${PORT}`);
+            console.log(`✅ Servidor corriendo en el puerto ${PORT}`);
         });
     } catch (error) {
         console.error('❌ Error al iniciar el servidor:', error);

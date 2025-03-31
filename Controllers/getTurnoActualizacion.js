@@ -6,7 +6,7 @@ export const getActualizacion = async(req, res) => {
     const dato = req.body;
     try {
         const consultaDatos = await prisma.formularioRegistro.findFirst({
-            where : dato
+            where : {NumeroDocumento: dato.NumeroDocumento}
         })
         if (!consultaDatos) {
             return res.status(400).json({ error: "No se encontraron los datos solicitados"});
