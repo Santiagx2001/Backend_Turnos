@@ -2,7 +2,7 @@
 node_modules/
 # Bun
 .bun/
-bun.lockb
+bun.lock
 # Prisma
 prisma/*.db
 prisma/migrations/
